@@ -155,6 +155,14 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+    
+    // Add this to help with Kotlin compatibility
+    configurations.all {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-stdlib:1.9.23"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.23"
+        }
+    }
 }
 
 // Apply static values from `gradle.properties` to the `android.packagingOptions`
@@ -200,6 +208,7 @@ dependencies {
     }
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${rootProject.ext.kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.ext.kotlinVersion}"
     
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
