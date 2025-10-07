@@ -43,6 +43,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
 
+      - name: Make gradlew executable
+        run: |
+          cd android
+          chmod +x ./gradlew
+
       - name: Build Android Debug APK
         run: |
           cd android
