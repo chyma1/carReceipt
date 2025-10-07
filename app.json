@@ -4,7 +4,7 @@
     "slug": "car-shipping-receipts",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./appicon.png",
+    "icon": "./assets/images/appicon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -17,7 +17,7 @@
     "android": {
       "package": "com.carshipping.receipts",
       "adaptiveIcon": {
-        "foregroundImage": "./appicon.png",
+        "foregroundImage": "./assets/images/appicon.png",
         "backgroundColor": "#ffffff"
       }
     },
