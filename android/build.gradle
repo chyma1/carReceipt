@@ -21,6 +21,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.jetbrains.kotlin.android' version '1.9.23' apply false
+}
+
 apply plugin: "com.facebook.react.rootproject"
 
 allprojects {
