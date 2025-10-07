@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          cache-dependency-path: 'package.json'
 
       - name: Install Expo CLI
         run: npm install -g @expo/cli
