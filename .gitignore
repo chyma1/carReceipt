@@ -33,4 +33,5 @@ yarn.lock
 *.tsbuildinfo
 
 # Keystore files
+my-release-key.keystore
 android/app/release.keystore
