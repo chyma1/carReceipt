@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "CarShippingReceipts",
+    "slug": "car-shipping-receipts",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./appicon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.carshipping.receipts",
+      "adaptiveIcon": {
+        "foregroundImage": "./appicon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "updates": {
+      "enabled": false
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c7e21153-0bd9-4d85-8088-924f59bca95d"
+      }
+    }
+  }
+}

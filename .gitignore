@@ -1,0 +1,33 @@
+# Expo
+.expo/
+.expo-shared/
+
+# Dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build outputs
+dist/
+build/
+web-build/
+
+# Environment files
+.env
+
+# Lock files (we'll keep only one)
+package-lock.json
+yarn.lock
+
+# TypeScript
+*.tsbuildinfo
