@@ -31,3 +31,6 @@ yarn.lock
 
 # TypeScript
 *.tsbuildinfo
+
+# Keystore files
+android/app/release.keystore
