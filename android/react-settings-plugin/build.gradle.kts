@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.9.24"
+    kotlin("jvm") version "1.9.23"
     id("java-gradle-plugin")
 }
 
@@ -15,5 +15,17 @@ gradlePlugin {
             id = "com.facebook.react.settings"
             implementationClass = "expo.plugins.ReactSettingsPlugin"
         }
+    }
+}
+
+// Configure Kotlin compilation
+kotlin {
+    jvmToolchain(11)
+}
+
+// Ensure the Kotlin sources are properly recognized
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
