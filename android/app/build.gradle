@@ -125,10 +125,18 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file('release.keystore')
-            storePassword 'android'
-            keyAlias 'release-key-alias'
-            keyPassword 'android'
+            if (file('release.keystore').exists()) {
+                storeFile file('release.keystore')
+                storePassword 'android'
+                keyAlias 'release-key-alias'
+                keyPassword 'android'
+            } else {
+                // Fallback to debug keystore if release keystore doesn't exist
+                storeFile file('debug.keystore')
+                storePassword 'android'
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
+            }
         }
     }
     buildTypes {

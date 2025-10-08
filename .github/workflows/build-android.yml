@@ -45,18 +45,22 @@ jobs:
           cd android
           chmod +x ./gradlew
 
+      - name: Generate release keystore
+        run: |
+          keytool -genkey -v -keystore android/app/release.keystore -alias release-key-alias -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown"
+
       - name: Clean Gradle cache
         run: |
           cd android
           ./gradlew clean
 
-      - name: Build Android Release APK with specific flags
+      - name: Build Android App Bundle with specific flags
         run: |
           cd android
-          ./gradlew assembleRelease --no-daemon --warning-mode all --stacktrace --info
+          ./gradlew bundleRelease --no-daemon --warning-mode all --stacktrace --info
 
-      - name: Upload Release APK
+      - name: Upload Release AAB
         uses: actions/upload-artifact@v4
         with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          name: app-release.aab
+          path: android/app/build/outputs/bundle/release/app-release.aab
