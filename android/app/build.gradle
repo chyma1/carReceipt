@@ -151,6 +151,16 @@ android {
             crunchPngs (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
         }
     }
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            kotlin {
+                srcDirs = ['src/main/java']
+            }
+        }
+    }
     packagingOptions {
         jniLibs {
             useLegacyPackaging (findProperty('expo.useLegacyPackaging')?.toBoolean() ?: false)

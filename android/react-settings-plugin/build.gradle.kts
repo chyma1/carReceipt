@@ -20,12 +20,21 @@ gradlePlugin {
 
 // Configure Kotlin compilation
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(17)
+}
+
+// Configure source sets
+sourceSets {
+    main {
+        kotlin {
+            srcDirs = ["src/main/kotlin"]
+        }
+    }
 }
 
 // Ensure the Kotlin sources are properly recognized
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }

@@ -45,6 +45,18 @@ jobs:
           cd android
           chmod +x ./gradlew
 
+      - name: Check Gradle version
+        run: |
+          cd android
+          ./gradlew --version
+
+      - name: Check source files
+        run: |
+          echo "Checking source files..."
+          ls -la android/app/src/main/java/com/carshipping/receipts/
+          echo "Checking react-settings-plugin..."
+          ls -la android/react-settings-plugin/src/main/kotlin/expo/plugins/
+
       - name: Generate release keystore
         run: |
           keytool -genkey -v -keystore android/app/release.keystore -alias release-key-alias -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown"
@@ -54,13 +66,13 @@ jobs:
           cd android
           ./gradlew clean
 
-      - name: Build Android App Bundle with specific flags
+      - name: Build Android Debug APK with specific flags
         run: |
           cd android
-          ./gradlew bundleRelease --no-daemon --warning-mode all --stacktrace --info
+          ./gradlew assembleDebug --no-daemon --warning-mode all --stacktrace --info
 
-      - name: Upload Release AAB
+      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-release.aab
-          path: android/app/build/outputs/bundle/release/app-release.aab
+          name: app-debug.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
