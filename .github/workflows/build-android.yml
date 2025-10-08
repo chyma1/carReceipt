@@ -37,16 +37,33 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Export JAVA_HOME
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "JAVA_HOME is set to $JAVA_HOME"
+
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Verify Android SDK
+        run: |
+          echo "ANDROID_HOME: $ANDROID_HOME"
+          echo "Android SDK tools: $(ls -la $ANDROID_HOME/tools 2>/dev/null || echo 'tools directory not found')"
+          echo "Android SDK cmdline-tools: $(ls -la $ANDROID_HOME/cmdline-tools 2>/dev/null || echo 'cmdline-tools directory not found')"
+          echo "Android SDK platforms: $(ls -la $ANDROID_HOME/platforms 2>/dev/null || echo 'platforms directory not found')"
 
       - name: Make gradlew executable
         run: |
           cd android
           chmod +x ./gradlew
+          ls -la ./gradlew
 
-      - name: Check Gradle version
+      - name: Check Java and Gradle versions
         run: |
+          echo "JAVA_HOME is set to: $JAVA_HOME"
+          java -version
+          echo "Checking Gradle wrapper properties..."
+          cat android/gradle/wrapper/gradle-wrapper.properties
           cd android
           ./gradlew --version
 
@@ -66,10 +83,21 @@ jobs:
           cd android
           ./gradlew clean
 
-      - name: Build Android Debug APK with specific flags
+      - name: Check Gradle dependencies
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon --warning-mode all --stacktrace --info
+          ./gradlew dependencies --stacktrace
+
+      - name: Build Android Debug APK with specific flags
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "JAVA_HOME: $JAVA_HOME"
+          echo "Java version: $(java -version 2>&1)"
+          cd android
+          echo "Building in directory: $(pwd)"
+          echo "Gradle wrapper exists: $(ls -la ./gradlew)"
+          echo "Gradle properties: $(cat gradle/wrapper/gradle-wrapper.properties)"
+          ./gradlew assembleDebug --no-daemon --warning-mode all --stacktrace --info --debug
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
